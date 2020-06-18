@@ -1,3 +1,9 @@
-import { EIP1193Provider } from "./types";
+import { EventEmitter } from "events";
 
-export class EthereumProvider implements EIP1193Provider {}
+import { EIP1193Provider, RequestArguments } from "./types";
+
+export class EthereumProvider extends EventEmitter implements EIP1193Provider {
+  public request(args: RequestArguments): Promise<unknown> {
+    return Promise.resolve();
+  }
+}
