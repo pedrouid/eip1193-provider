@@ -56,8 +56,6 @@ export interface EIP1193Provider extends SimpleEventEmitter {
 }
 
 export interface IEthereumProvider extends EIP1193Provider {
-  // opt-in account expsosure
-  request(args: EIP1102Request): Promise<ProviderAccounts>;
   // legacy alias for EIP-1102
   enable(): Promise<ProviderAccounts>;
 }
