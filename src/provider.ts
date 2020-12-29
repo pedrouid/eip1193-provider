@@ -1,9 +1,11 @@
-import { EventEmitter } from "events";
+import JsonRpcProvider from "@json-rpc-tools/provider";
+import { formatJsonRpcRequest } from "@json-rpc-tools/utils";
 
-import { EIP1193Provider, RequestArguments } from "./types";
+import { IEthereumProvider, ProviderAccounts } from "./types";
 
-export class EthereumProvider extends EventEmitter implements EIP1193Provider {
-  public request(args: RequestArguments): Promise<unknown> {
-    return Promise.resolve();
+export class EthereumProvider extends JsonRpcProvider
+  implements IEthereumProvider {
+  public enable(): Promise<ProviderAccounts> {
+    return this.request(formatJsonRpcRequest("eth_requestAccounts", []));
   }
 }

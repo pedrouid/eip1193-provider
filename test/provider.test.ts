@@ -1,8 +1,10 @@
-import { EthereumProvider } from "../src";
+import EthereumProvider from "../src";
 
 describe("EthereumProvider", () => {
-  it("should instantiate", async () => {
-    const provider = new EthereumProvider();
-    expect(provider).toBeTruthy();
+  it("eth_chainId", async () => {
+    const provider = new EthereumProvider(`https://rpc.slock.it/mainnet`);
+    const result = await provider.request({ method: "eth_chainId" });
+    expect(!!result).toBeTruthy();
+    expect(result).toEqual("0x1");
   });
 });
