@@ -13,16 +13,16 @@ export interface ProviderInfo {
   chainId: string;
 }
 
-export interface RequestArguments {
+export interface RequestArguments<T = object> {
   method: string;
-  params?: unknown[] | object;
+  params?: T[] | T;
 }
 
 export type ProviderChainId = string;
 
 export type ProviderAccounts = string[];
 
-export interface EIP1102Request extends RequestArguments {
+export interface EIP1102Request extends RequestArguments<[]> {
   method: "eth_requestAccounts";
 }
 
@@ -52,7 +52,7 @@ export interface EIP1193Provider extends SimpleEventEmitter {
     listener: (accounts: ProviderAccounts) => void
   ): void;
   // make an Ethereum RPC method call.
-  request(args: RequestArguments): Promise<unknown>;
+  request<R, P>(args: RequestArguments<P>): Promise<R>;
 }
 
 export interface IEthereumProvider extends EIP1193Provider {
